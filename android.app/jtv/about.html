@@ -1,0 +1,12 @@
+[% INCLUDE header.html %]
+[% USE date %]
+
+<h3>Juggling.tv for Android</h3>
+
+<div class="about">Version [% version %]</div>
+
+<div class="about">Compiled [% date.format(mytime, ' %d. %m. %Y').replace(' 0', ' ') %]</div>
+
+<div class="about">Source: <a href="https://github.com/petrkle/juggling.tv" target="_blank">github.com/petrkle/juggling.tv</a></div>
+
+[% INCLUDE footer.html -%]

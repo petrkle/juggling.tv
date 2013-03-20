@@ -1,0 +1,45 @@
+<videos>
+
+	<family>
+		<title>Featured videos</title>
+		<url>featured</url>
+		<short>rf</short>
+	</family>
+
+	<family>
+		<title>Most recent</title>
+		<url>recent</url>
+		<short>mr</short>
+	</family>
+
+	<family>
+		<title>Most discussed</title>
+		<url>discussed</url>
+		<short>md</short>
+	</family>
+
+	<family>
+		<title>Top favourites</title>
+		<url>favorited</url>
+		<short>tf</short>
+	</family>
+
+	<family>
+		<title>Top rated</title>
+		<url>rated</url>
+		<short>tr</short>
+	</family>
+
+	<family>
+		<title>Most viewed</title>
+		<url>views</url>
+		<short>mv</short>
+	</family>
+
+	<family>
+		<title>Random videos</title>
+		<url>random</url>
+		<short>rd</short>
+	</family>
+
+</videos>

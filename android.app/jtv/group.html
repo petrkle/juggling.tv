@@ -1,0 +1,35 @@
+[% INCLUDE header.html %]
+
+	<div id="header">
+		<a href="index.html"><h1>juggling.tv</h1></a>
+	</div>
+
+	<div id="subheader">
+		<h2>[% group.title %]</h2>
+	</div>
+
+	<div id="loading">
+		<div><img src="loading.gif" width="64" height="64" alt="Loading ..."/></div>
+		Loading ...
+	</div>
+	<ul id="clips">
+	</ul>
+
+<script>
+var containerID="clips";
+
+function displayClip(clip){
+	$('#'+containerID).append('<li class="vlink"><a href="[% group.short %]-v.html#'+clip.id+'"><img src="http://juggling.tv/thumb/0_'+clip.id+'.jpg" /><h3>'+clip.title+'</h3><p>'+clip.description+'</p></a></li>');
+}
+	
+	$.getJSON("[% API %]/l/[% group.url %]",
+  function(data) {
+  for (var i=0; i < data.length; i++){
+    displayClip(data[i]);
+  }
+	$('#loading').hide();
+});
+
+</script>
+
+[% INCLUDE footer.html -%]

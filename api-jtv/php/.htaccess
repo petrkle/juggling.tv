@@ -1,0 +1,9 @@
+RewriteEngine	on
+
+RewriteCond %{HTTP_HOST} ^www\.(.*)
+RewriteRule (.*) http://%1/jtv/$1 [R=301,QSA,NE,L]
+
+RewriteRule ^l/(recent|featured|views|rated|favorited|discussed|random)$ l.php?cat=$1 [L,QSA]
+RewriteRule ^l/(recent|featured|views|rated|favorited|discussed|random)/([0-9]+)$ l.php?cat=$1&page=$2 [L,QSA]
+
+RewriteRule ^v/([0-9]+)$ v.php?id=$1 [L,QSA]

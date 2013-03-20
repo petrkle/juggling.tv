@@ -1,0 +1,51 @@
+[% INCLUDE header.html %]
+
+<div id="header">
+	<a href="index.html"><h1>juggling.tv</h1></a>
+</div>
+
+<div id="subheader">
+	<a href="[% group.short %].html"><h2>[% group.title %]</h2></a>
+</div>
+
+<div id="videotitle">
+	<h3>Loading video title ...</h3>
+</div>
+
+<div id="loading">
+	<div><img src="loading.gif" width="64" height="64" alt="Loading ..."/></div>
+	Loading ...
+</div>
+
+<div id="v">
+</div>
+
+<div id="footer"> 
+	<a href="index.html"><h4>juggling.tv</h4></a> 
+</div>
+
+<script>
+var containerID="v";
+var vID=window.location.hash.split('#')[1];
+
+	$.getJSON("[% API %]/v/"+vID,
+
+  function(v) {
+	if(v.mp4 === ""){
+		$('#'+containerID).append('<div class="nomp4">Sorry, this video is not available.<br />Try it direct on <a href="http://juggling.tv/'+vID+'" target="_blank">juggling.tv/'+vID+'</a></div>');
+	}else{
+	$('#'+containerID).append('<video id="video" src="'+v.mp4+'" poster="http://juggling.tv/thumb/l-0_'+vID+'.jpg" controls="controls" autobuffer="false" width="100%" onclick="this.load();this.play();"></video>');
+
+	}
+	$('#'+containerID).append('<p>'+v.description+'</p>');
+	$('#'+containerID).append('<ul class="vdetails"><li><strong>Author</strong>: '+v.user_name+'</li><li><strong>Duration</strong>: '+v.duration+'</li><li><strong>Date</strong>: '+v.date+'</li><li><strong>Views</strong>: '+v.views+'</li></ul>');
+
+	$('#'+containerID).append('<div id="sponsor"><h5>Sponsor</h5><a href="'+v.sponsor_link+'" target="_blank"><img src="'+v.sponsor_img+'"></a></div>');
+	 
+	$('#videotitle h3').text(v.title);
+	$('#loading').hide();
+});
+
+</script>
+
+[% INCLUDE footer.html -%]
