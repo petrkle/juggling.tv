@@ -33,6 +33,7 @@ if(is_cached($url)){
 		$video['image']=extract_attr_fn(".//div[@class='videothumb']/a/img","src",$node,$xpath);
 		$video['user_link']=extract_attr_fn(".//p[@class='user']/a","href",$node,$xpath);
 		$video['user_name']=extract_text_fn(".//p[@class='user']",$node,$xpath);
+		$video['user_id']=extract_userid($video['user_link']);
 		$video['description']=extract_text_fn(".//div[@class='desc']",$node,$xpath);
 		$video['duration']=extract_text_fn(".//p[@class='duration']",$node,$xpath);
 		$video['views']=extract_text_fn(".//p[@class='views']",$node,$xpath);

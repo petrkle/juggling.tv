@@ -38,9 +38,22 @@ var vID=window.location.hash.split('#')[1];
 
 	}
 	$('#'+containerID).append('<p>'+v.description+'</p>');
-	$('#'+containerID).append('<ul class="vdetails"><li><strong>Author</strong>: '+v.user_name+'</li><li><strong>Duration</strong>: '+v.duration+'</li><li><strong>Date</strong>: '+v.date+'</li><li><strong>Views</strong>: '+v.views+'</li></ul>');
+	$('#'+containerID).append('<ul class="vdetails"><li>Author: <a href="u.html#'+v.user_id+'">'+v.user_name+'</a></li><li><strong>Duration</strong>: '+v.duration+'</li><li><strong>Date</strong>: '+v.date+'</li><li><strong>Views</strong>: '+v.views+'</li></ul>');
 
-	$('#'+containerID).append('<div id="sponsor"><h5>Sponsor</h5><a href="'+v.sponsor_link+'" target="_blank"><img src="'+v.sponsor_img+'"></a></div>');
+	if(v.comments_count>0){
+		$('#'+containerID).append('<h3>Comments</h3><ul class="comments">');
+		var length = v.comments.length,
+		element = null;
+		for (var i = 0; i < length; i++) {
+		  element = v.comments[i];
+			$('#'+containerID).append('<li class="comment"><a href="u.html#'+element.author_id+'">'+element.author_name+'</a> '+element.author_time+' ago<p>'+element.text+'</p></li>');
+
+			}
+		$('#'+containerID).append('</ul>');
+	
+	}
+
+	$('#'+containerID).append('<div id="sponsor"><h3>Sponsor</h3><a href="'+v.sponsor_link+'" target="_blank"><img src="'+v.sponsor_img+'"></a></div>');
 	 
 	$('#videotitle h3').text(v.title);
 	$('#loading').hide();

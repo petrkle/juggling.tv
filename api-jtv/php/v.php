@@ -28,10 +28,27 @@ if(is_cached($url)){
 	$video['video_src']=extract_atr($dom,"//link[@rel='video_src']","href");
 	$video['user_avatar']=extract_atr($dom,"//div[@class='vv-avatar']/a/img","src");
 	$video['user_link']=extract_atr($dom,"//div[@class='vv-avatar']/a","href");
+	$video['user_id']=extract_userid($video['user_link']);
 	$video['user_name']=extract_text($dom,"//h3[@class='vv-box-title']/a[contains(@href,'/users/')]");
 	$video['place']=extract_text($dom,"//span[@class='vv-cunt']");
 	$video['sponsor_link']=extract_atr($dom,"//a[@class='vv-sponsor']","href");
 	$video['sponsor_img']=extract_atr($dom,"//a[@class='vv-sponsor']/img","src");
+	$video['comments_count']=extract_text($dom,"//span[@class='comment floatr']");
+	$video['comments']=array();
+
+	$xpath = new DOMXPath($dom);
+	$comments = $xpath->query("//div[@class='comment-list']");
+
+	foreach ($comments as $comment) {
+		$com=array();
+		$com['author_img']=extract_attr_fn(".//img[@class='comment-image']","src",$comment,$xpath);
+		$com['author_name']=extract_text_fn(".//a",$comment,$xpath);
+		$com['author_link']=extract_attr_fn(".//a","href",$comment,$xpath);
+		$com['author_id']=extract_userid($com['author_link']);
+		$com['author_time']=preg_replace('/^_ /','',extract_text_fn(".//span[@class='vv-info']",$comment,$xpath));
+		$com['text']=preg_replace('/.*“(.*)”.*/s','\1',extract_text_fn(".//div[@class='comment-body']",$comment,$xpath));
+		array_push($video['comments'],$com);
+	}
 
 	$video=json_encode($video);
 	save_to_cache($url,$video);

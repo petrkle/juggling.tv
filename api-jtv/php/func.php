@@ -59,3 +59,7 @@ function save_to_cache($url,$content){
 function load_from_cache($url){
 	return file_get_contents(CACHEDIR.'/'.url2fn($url));
 }
+
+function extract_userid($link){
+	return preg_replace('/.*users\/([0-9]+)\/.*/','\1',$link);
+}
