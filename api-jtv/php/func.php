@@ -46,7 +46,7 @@ function is_cached($url){
 
 function url2fn($url){
 	$url = str_replace(JTV,'',$url);
-	return preg_replace('/[\/\.:]/','',$url);
+	return preg_replace('/[^a-z0-9]*/','',$url);
 }
 
 function save_to_cache($url,$content){

@@ -3,7 +3,15 @@ RewriteEngine	on
 RewriteCond %{HTTP_HOST} ^www\.(.*)
 RewriteRule (.*) http://%1/jtv/$1 [R=301,QSA,NE,L]
 
+# category lists
 RewriteRule ^l/(recent|featured|views|rated|favorited|discussed|random)$ l.php?cat=$1 [L,QSA]
 RewriteRule ^l/(recent|featured|views|rated|favorited|discussed|random)/([0-9]+)$ l.php?cat=$1&page=$2 [L,QSA]
 
+# show video
 RewriteRule ^v/([0-9]+)$ v.php?id=$1 [L,QSA]
+
+# user details
+RewriteRule ^u/([0-9]+)$ u.php?id=$1 [L,QSA]
+
+# search
+RewriteRule ^s/(v|u)/(.*)$ s.php?type=$1&q=$2 [L,QSA]

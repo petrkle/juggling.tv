@@ -5,9 +5,18 @@
 </div>
 
 <ul id="categories">
+<li><form action="s.html" method="get" onsubmit="search();return false;"><input name="q" id="q" type="text" /><input type="submit" value="Search" /></form></li>
 [% FOREACH foo IN groups %]
 <li><a href="[% foo.short %].html">[% foo.title %]</a></li>
 [% END %]
 </ul>
+
+<script type="text/javascript">
+	function search(){
+		var q = document.getElementById('q');
+		window.location.href = "s.html#"+q.value;
+	}
+
+</script>
 
 [% INCLUDE footer.html -%]

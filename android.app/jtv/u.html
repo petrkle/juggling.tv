@@ -1,0 +1,40 @@
+[% INCLUDE header.html %]
+
+<div id="header">
+	<a href="index.html"><h1>juggling.tv</h1></a>
+</div>
+
+<div id="subheader">
+	<h2>User profile</h2>
+</div>
+
+<div id="loading">
+	<div><img src="loading.gif" width="64" height="64" alt="Loading ..."/></div>
+	Loading ...
+</div>
+
+<div id="u">
+</div>
+
+<div id="footer"> 
+	<a href="index.html"><h4>juggling.tv</h4></a> 
+</div>
+
+<script>
+var containerID="u";
+var uID=window.location.hash.split('#')[1];
+
+	$.getJSON("[% API %]/u/"+uID,
+
+  function(u) {
+		$('#'+containerID).append('<p><img src="'+u.img+'"/></p>');
+		$('#'+containerID).append('<ul class="vdetails"><li><strong>Followers</strong>: '+u.followers+'</li><li><strong>Video views</strong>: '+u.videoviews+'</li><li><strong>Profile views</strong>: '+u.profileviews+'</li><li><strong>Last login</strong>: '+u.lastlogin+' ago</li><li><strong>Membership</strong>: '+u.membership+'</li></ul>');
+
+	 
+	$('#subheader h2').text(u.name);
+	$('#loading').hide();
+});
+
+</script>
+
+[% INCLUDE footer.html -%]

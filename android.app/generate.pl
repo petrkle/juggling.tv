@@ -45,11 +45,25 @@ $t->process('index.html',
 	"$OUT/index.html",
 	{ binmode => ':utf8' }) or die $t->error;
 
+$t->process('s.html',
+	{ 'title' => 'jtv search',
+		'API' 	=> $API,
+	},
+	"$OUT/s.html",
+	{ binmode => ':utf8' }) or die $t->error;
+
 $t->process('u.html',
 	{ 'title' => 'jtv users',
 		'API' 	=> $API,
 	},
 	"$OUT/u.html",
+	{ binmode => ':utf8' }) or die $t->error;
+
+$t->process('v.html',
+	{ 'title' => 'video',
+		'API' 	=> $API,
+	},
+	"$OUT/v.html",
 	{ binmode => ':utf8' }) or die $t->error;
 
 $t->process('about.html',
