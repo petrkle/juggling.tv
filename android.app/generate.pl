@@ -45,6 +45,13 @@ $t->process('index.html',
 	"$OUT/index.html",
 	{ binmode => ':utf8' }) or die $t->error;
 
+$t->process('u.html',
+	{ 'title' => 'jtv users',
+		'API' 	=> $API,
+	},
+	"$OUT/u.html",
+	{ binmode => ':utf8' }) or die $t->error;
+
 $t->process('about.html',
 	{	'title' => 'jtv',
 		'version' => $manifest->{'android:versionName'},

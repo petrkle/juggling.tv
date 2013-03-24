@@ -17,9 +17,28 @@ if(is_cached($url)){
 
 	$dom = new DOMDocument();
 	@$dom->loadHTMLFile($url);
+	$xpath = new DOMXPath($dom);
 
 	$user=array();
-	$user['name']=extract_text($dom,"//div[@class='profileinfo']");
+
+	$userinfo = $xpath->query("//div[@id='userinfo']");
+
+	$user['name']=preg_replace('/^_ /','',extract_text_fn(".//h2[@class='bx-rt-title']",$userinfo->item(O),$xpath));
+	$user['img']=extract_attr_fn(".//div[@class='pictprofile']/img","src",$userinfo->item(O),$xpath);
+
+	$raw=$dom->saveXML($userinfo->item(0));
+	$delim='<h3 ';
+	$raw=preg_split("/$delim/",$raw);
+	for($foo=1;$foo<count($raw);$foo++){
+		$baz=$delim.$raw[$foo];
+
+		$pdom = new DOMDocument();
+		@$pdom->loadHTML($baz);
+		$prop=preg_replace('/( |:)/','',strtolower(extract_text($pdom,"//h3")));
+		$val=extract_text($pdom,"//div[@class='profileinfo' or @class='profileinfo mb-5']");
+		$user[$prop]=$val;
+	}
+
 
 	$user=json_encode($user);
 	save_to_cache($url,$user);

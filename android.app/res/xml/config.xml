@@ -28,6 +28,7 @@
     <!-- <access origin="https://example.com" /> allow any secure requests to example.com -->
     <!-- <access origin="https://example.com" subdomains="true" /> such as above, but including subdomains, such as www -->
 		<access origin="http://api-jtv.rhcloud.com*"/>
+		<access origin="http://juggling.tv/photo/*"/>
 
     <!-- <content src="http://mysite.com/myapp.html" /> for external pages -->
     <content src="index.html" />

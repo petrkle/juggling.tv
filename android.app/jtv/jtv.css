@@ -14,8 +14,9 @@ li a{font-size:1.3em;color:#000;}
 .vlink{clear:both;list-style:none;overflow:hidden;display:block;height:90px;border-bottom:solid 1px #000;}
 .vlink a{text-decoration:none;}
 .vlink h3{display:block;font-size:0.8em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:3px 10px 0 0;padding:0;}
-.vlink p{clear:right;font-size:0.5em;text-overflow:ellipsis;margin:0;padding:0;height:90px;}
+.vlink p{clear:right;font-size:0.5em;text-overflow:ellipsis;margin:0;padding:0;height:90px;display:block;}
 .vlink img{float:left;width:160px;height:90px;background:#666;border-right:solid 1px #000;margin: 0 5px 0 0;}
+.vlink h3{text-align:left;}
 #v video{margin:0;padding:0;width:100%;}
 #v p{margin:5px;}
 #footer{text-align:center;margin:0;padding:0;background:#fe3;}
@@ -27,9 +28,11 @@ li a{font-size:1.3em;color:#000;}
 .nomp4{margin:0;padding:30px 5px;background-color:#000;color:#fff;}
 .nomp4 a{color:#fe3;font-weight:bold;}
 .vdetails,#sponsor{margin:0;padding:5px;}
-#sponsor{margin:0;padding:0;text-align:center;}
-.about{margin:10px;padding:10px;text-align:center;}
-.about a,.comment a,.vdetails a{text-decoration:underline;color:#00f;font-weight:bold}
+#sponsor{margin:5px 0;padding:0;text-align:center;}
+.about,form{margin:10px;padding:10px;text-align:center;}
+.about a,.comment a,.vdetails a{text-decoration:underline;color:#00f;font-weight:bold;}
 p{padding:15px;margin:0;}
 h3{font-weight:bold;padding:15px;letter-spacing:-1px;margin:0;text-align:center;}
+#sponsor h3{font-weight:bold;padding:5px;letter-spacing:-1px;margin:0;text-align:center;}
 .comment{list-style:none;margin:0;padding:5px 15px;}
+.okbutton{padding:15px 80px;font-weight:bold;}
