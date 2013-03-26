@@ -48,7 +48,7 @@ if(is_cached($url)){
 		$com['author_link']=extract_attr_fn(".//a","href",$comment,$xpath);
 		$com['author_id']=extract_userid($com['author_link']);
 		$com['author_time']=preg_replace('/^_ /','',extract_text_fn(".//span[@class='vv-info']",$comment,$xpath));
-		$com['text']=preg_replace('/.*“(.*)”.*/s','\1',extract_text_fn(".//div[@class='comment-body']",$comment,$xpath));
+		$com['text']=preg_replace('/.*“(.*)”.*/s','\1',extract_text_fn(".//div[@class='comment-body' or @class='comment-body last']",$comment,$xpath));
 		array_push($video['comments'],$com);
 	}
 
