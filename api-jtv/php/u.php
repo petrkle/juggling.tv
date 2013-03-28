@@ -38,6 +38,22 @@ if(is_cached($url)){
 		$val=extract_text($pdom,"//div[@class='profileinfo' or @class='profileinfo mb-5']");
 		$user[$prop]=$val;
 	}
+	
+		$nodes = $xpath->query("//div[@class='myvideo']");
+		if($nodes){
+			$videos=array();
+			foreach ($nodes as $node) {
+				$result=array();
+				$result['title']=extract_text_fn(".//h3[@class='title']/a",$node,$xpath);
+				$result['link']=extract_attr_fn(".//h3[@class='title']/a","href",$node,$xpath);
+				$result['id']=str_replace(JTV.'/','',$result['link']);
+				$result['added']=extract_text_fn(".//p[@class='added']",$node,$xpath);
+				$result['duration']=extract_text_fn(".//p[@class='duration']",$node,$xpath);
+				$result['views']=extract_text_fn(".//p[@class='views']",$node,$xpath);
+				array_push($videos,$result);
+			}
+			$user['videos']=$videos;
+		}
 
 
 	$user=json_encode($user);
