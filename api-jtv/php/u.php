@@ -50,6 +50,7 @@ if(is_cached($url)){
 				$result['added']=extract_text_fn(".//p[@class='added']",$node,$xpath);
 				$result['duration']=extract_text_fn(".//p[@class='duration']",$node,$xpath);
 				$result['views']=extract_text_fn(".//p[@class='views']",$node,$xpath);
+				$result['desc']=preg_replace('/.*\\t/s','',extract_text_fn(".//div[@class='desc']",$node,$xpath));
 				array_push($videos,$result);
 			}
 			$user['videos']=$videos;

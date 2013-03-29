@@ -31,10 +31,13 @@ function displayClip(clip){
 	$.getJSON("[% API %]/s/v/"+q,
 
   function(s) {
-  for (var i=0; i < s.length; i++){
-    displayClip(s[i]);
-  }
-	 
+	if(s.length>0){
+		for (var i=0; i < s.length; i++){
+			displayClip(s[i]);
+		}
+	}else{
+	$('#'+containerID).append('<div id="subheader"><h2>Nothing found</h2></div>');
+	}
 	$('#loading').hide();
 });
 

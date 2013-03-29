@@ -10,7 +10,6 @@ function extract_atr($dom,$query,$atr){
 	return $navrat;
 }
 
-
 function extract_text($dom,$query){
 	$navrat = "";
 	$xpath = new DOMXPath($dom);

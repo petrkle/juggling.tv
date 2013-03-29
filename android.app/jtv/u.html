@@ -29,9 +29,26 @@ var uID=window.location.hash.split('#')[1];
   function(u) {
 		$('#'+containerID).append('<p><img src="'+u.img+'"/></p>');
 		$('#'+containerID).append('<ul class="vdetails"><li><strong>Followers</strong>: '+u.followers+'</li><li><strong>Video views</strong>: '+u.videoviews+'</li><li><strong>Profile views</strong>: '+u.profileviews+'</li><li><strong>Last login</strong>: '+u.lastlogin+' ago</li><li><strong>Membership</strong>: '+u.membership+'</li></ul>');
-
-	 
+		if(u.country){
+			$('.vdetails').append('<li><strong>Country</strong>: '+u.country+'</li>');
+		}
+		if(u.gender){
+			$('.vdetails').append('<li><strong>Gender</strong>: '+u.gender+'</li>');
+		}
 	$('#subheader h2').text(u.name);
+	if(u.videos){
+
+		$('#'+containerID).append('<div id="subheader"><h2>'+u.name+' videos</h2></div><ul id="clips">');
+		var length = u.videos.length,
+		element = null;
+		for (var i = 0; i < length; i++) {
+		  element = u.videos[i];
+			$('#'+containerID).append('<li class="vlink"><a href="v.html#'+element.id+'"><img src="http://juggling.tv/thumb/0_'+element.id+'.jpg" /><h3>'+element.title+'</h3><p>'+element.desc+'</p></a></li>');
+
+			}
+
+		$('#'+containerID).append('</ul>');
+	}
 	$('#loading').hide();
 });
 
