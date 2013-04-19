@@ -5,16 +5,16 @@
 </div>
 
 <ul id="categories">
-	<li><form action="s.html" method="get" onsubmit="search();return false;"><input name="q" id="q" type="text" /><a href="javascript:search();" class="button-link">Search</a></li>
-[% FOREACH foo IN groups %]
-<li><a class="cat" href="[% foo.short %].html">[% foo.title %]</a></li>
+	<li><form action="search.html" method="get" onsubmit="search();return false;"><input name="q" id="q" type="text" /><a href="javascript:search();" class="button-link">Search</a></li>
+[% FOREACH foo IN APP.groups %]
+<li><a class="cat" href="group.html#[% foo.url %]">[% foo.title %]</a></li>
 [% END %]
 </ul>
 
 <script type="text/javascript">
 	function search(){
 		var q = document.getElementById('q');
-		window.location.href = "s.html#"+q.value;
+		window.location.href = "search.html#"+q.value;
 	}
 
 </script>

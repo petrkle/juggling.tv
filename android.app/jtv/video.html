@@ -1,0 +1,58 @@
+[% INCLUDE header.html %]
+[% INCLUDE title.html %]
+[% INCLUDE loading.html %]
+
+<div id="v">
+</div>
+
+<div id="footer"> 
+	<a href="index.html"><h4>juggling.tv</h4></a> 
+</div>
+
+<script>
+[% INCLUDE reload.js %]
+[% INCLUDE timeout.js %]
+
+$(document).ready(function () {
+var containerID="v";
+var id=window.location.hash.split('#')[1];
+
+	$.getJSON("[% APP.api %]/v/"+id,
+
+  function(v) {
+	if(v.mp4 === ""){
+		$('#'+containerID).append('<div class="nomp4">Sorry, this video is not available.<br />Try it direct on <a href="http://juggling.tv/'+id+'" target="_blank">juggling.tv/'+id+'</a></div>');
+	}else{
+	$('#'+containerID).append('<video id="video" src="'+v.mp4+'" poster="http://juggling.tv/thumb/l-0_'+id+'.jpg" controls="controls" autobuffer="false" width="100%" onclick="this.load();this.play();"></video>');
+
+	}
+	$('#'+containerID).append('<p>'+v.description+'</p>');
+	$('#'+containerID).append('<ul class="vdetails"><li>Author: <a href="user.html#'+v.user_id+'">'+v.user_name+'</a></li><li><strong>Duration</strong>: '+v.duration+'</li><li><strong>Date</strong>: '+v.date+'</li><li><strong>Views</strong>: '+v.views+'</li></ul>');
+
+	if(v.comments_count>0){
+		$('#'+containerID).append('<h3>Comments</h3><ul class="comments">');
+		var length = v.comments.length,
+		element = null;
+		for (var i = 0; i < length; i++) {
+		  element = v.comments[i];
+			$('#'+containerID).append('<li class="comment"><a href="user.html#'+element.author_id+'">'+element.author_name+'</a> '+element.author_time+' ago<p>'+element.text+'</p></li>');
+
+			}
+		$('#'+containerID).append('</ul>');
+	
+	}
+
+	$('#'+containerID).append('<div id="sponsor"><h3>Sponsor</h3><a href="'+v.sponsor_link+'" target="_blank"><img src="'+v.sponsor_img+'"></a></div>');
+	 
+	$('#videotitle h3').text(v.title);
+	$('#video').show();
+	$('#loading').hide();
+})
+.fail(function( jqxhr, textStatus, error ) {
+		[% INCLUDE retry.js %]
+});
+
+});
+</script>
+
+[% INCLUDE footer.html -%]

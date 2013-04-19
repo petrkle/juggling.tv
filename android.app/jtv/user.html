@@ -1,17 +1,11 @@
 [% INCLUDE header.html %]
-
-<div id="header">
-	<a href="index.html"><h1>juggling.tv</h1></a>
-</div>
+[% INCLUDE title.html %]
 
 <div id="subheader">
 	<h2>User profile</h2>
 </div>
 
-<div id="loading">
-	<div><img src="loading.gif" width="64" height="64" alt="Loading ..."/></div>
-	Loading ...
-</div>
+[% INCLUDE loading.html %]
 
 <div id="u">
 </div>
@@ -21,10 +15,14 @@
 </div>
 
 <script>
-var containerID="u";
-var uID=window.location.hash.split('#')[1];
+[% INCLUDE reload.js %]
+[% INCLUDE timeout.js %]
 
-	$.getJSON("[% API %]/u/"+uID,
+$(document).ready(function () {
+var containerID="u";
+var id=window.location.hash.split('#')[1];
+
+	$.getJSON("[% APP.api %]/u/"+id,
 
   function(u) {
 		$('#'+containerID).append('<p><img src="'+u.img+'"/></p>');
@@ -43,15 +41,19 @@ var uID=window.location.hash.split('#')[1];
 		element = null;
 		for (var i = 0; i < length; i++) {
 		  element = u.videos[i];
-			$('#'+containerID).append('<li class="vlink"><a href="v.html#'+element.id+'"><img src="http://juggling.tv/thumb/0_'+element.id+'.jpg" /><h3>'+element.title+'</h3><p>'+element.desc+'</p></a></li>');
+			$('#'+containerID).append('<li class="vlink"><a href="video.html#'+element.id+'"><img src="http://juggling.tv/thumb/0_'+element.id+'.jpg" /><h3>'+element.title+'</h3><p>'+element.desc+'</p></a></li>');
 
 			}
 
 		$('#'+containerID).append('</ul>');
 	}
 	$('#loading').hide();
+})
+.fail(function( jqxhr, textStatus, error ) {
+		[% INCLUDE retry.js %]
 });
 
+});
 </script>
 
 [% INCLUDE footer.html -%]

@@ -14,68 +14,32 @@ my $groups = $xml->XMLin('jtv/groups.xml');
 my $manifest = $xml->XMLin("AndroidManifest.xml");
 
 my $OUT = "assets/www";
-my $API = "http://api-jtv.rhcloud.com";
+
+my $APP = {
+	'api' => "http://api-jtv.rhcloud.com",
+	'name' => "juggling.tv",
+	'groups' => [@{$groups->{family}}],
+	'version' => $manifest->{'android:versionName'}
+};
+
+my @PAGES = ( "index", "group", "search", "user", "video", "about" );
 
 my $t = Template->new({
 		INCLUDE_PATH => 'jtv',
 		ENCODING => 'utf8',
 });
 
-for my $group (@{$groups->{family}}){
-
-	$t->process('group.html',
-		{ 'group' => $group,
-			'API' 	=> $API,
-		},
-	"$OUT/$group->{'short'}.html",
+foreach my $page (@PAGES){
+	$t->process("$page.html",
+		{'APP' => $APP},
+		"$OUT/$page.html",
 		{ binmode => ':utf8' }) or die $t->error;
-
-	$t->process('v.html',
-		{ 'group' => $group,
-			'API' 	=> $API,
-		},
-	"$OUT/$group->{'short'}-v.html",
-		{ binmode => ':utf8' }) or die $t->error;
-
 }
-
-$t->process('index.html',
-	{ 'groups' => [@{$groups->{family}}],
-	},
-	"$OUT/index.html",
-	{ binmode => ':utf8' }) or die $t->error;
-
-$t->process('s.html',
-	{ 'title' => 'jtv search',
-		'API' 	=> $API,
-	},
-	"$OUT/s.html",
-	{ binmode => ':utf8' }) or die $t->error;
-
-$t->process('u.html',
-	{ 'title' => 'jtv users',
-		'API' 	=> $API,
-	},
-	"$OUT/u.html",
-	{ binmode => ':utf8' }) or die $t->error;
-
-$t->process('v.html',
-	{ 'title' => 'video',
-		'API' 	=> $API,
-	},
-	"$OUT/v.html",
-	{ binmode => ':utf8' }) or die $t->error;
-
-$t->process('about.html',
-	{	'title' => 'jtv',
-		'version' => $manifest->{'android:versionName'},
-	},
-	"$OUT/about.html",
-	{ binmode => ':utf8' }) or die $t->error;
 
 copy("jtv/jtv.css","$OUT/jtv.css");
 copy("jtv/img/home.png","$OUT/home.png");
 copy("jtv/img/right.png","$OUT/right.png");
 copy("jtv/img/left.png","$OUT/left.png");
 copy("jtv/img/loading.gif","$OUT/loading.gif");
-copy("jtv/jquery.js","$OUT/jquery.js");
+copy("jtv/img/gradient.png","$OUT/gradient.png");
+copy("jtv/jquery-1.8.3.min.js","$OUT/jquery.js");
