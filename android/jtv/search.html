@@ -1,0 +1,35 @@
+[% INCLUDE header.html %]
+[% INCLUDE title.html %]
+
+
+[% INCLUDE loading.html %]
+
+<ul id="clips">
+</ul>
+<script>
+[% INCLUDE reload.js %]
+[% INCLUDE timeout.js %]
+$(document).ready(function () {
+var containerID="clips";
+var id=window.location.hash.split('#')[1];
+
+	$.getJSON("[% APP.api %]/s/v/"+id,
+
+  function(s) {
+	if(s.length>0){
+		for (var i=0; i < s.length; i++){
+			$('#'+containerID).append('<li class="vlink"><a href="video.html#'+s[i].id+'"><img src="http://juggling.tv/thumb/0_'+s[i].id+'.jpg" /><h3>'+s[i].title+'</h3><p>'+s[i].description+'</p></a></li>');
+		}
+	}else{
+	$('#'+containerID).append('<div id="subheader"><h2>Nothing found</h2></div>');
+	}
+	$('#loading').hide();
+})
+.fail(function( jqxhr, textStatus, error ) {
+		[% INCLUDE retry.js %]
+});
+
+});
+</script>
+
+[% INCLUDE footer.html -%]

@@ -1,0 +1,14 @@
+<div id="loading"><div id="wait">Loading</div></div>
+<script type="text/javascript">
+var originalText = $("#wait").text(),
+i = 0;
+$("#wait").append(".");
+setInterval(function () {
+    $("#wait").append(".");
+    i++;
+    if (i == 10) {
+        $("#wait").html(originalText);
+        i = 0;
+    }
+}, 300);
+</script>
