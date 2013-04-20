@@ -37,9 +37,7 @@ foreach my $page (@PAGES){
 }
 
 copy("jtv/jtv.css","$OUT/jtv.css");
-copy("jtv/img/home.png","$OUT/home.png");
 copy("jtv/img/right.png","$OUT/right.png");
-copy("jtv/img/left.png","$OUT/left.png");
 copy("jtv/img/loading.gif","$OUT/loading.gif");
 copy("jtv/img/gradient.png","$OUT/gradient.png");
 copy("jtv/img/logo.png","$OUT/logo.png");

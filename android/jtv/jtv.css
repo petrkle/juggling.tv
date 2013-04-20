@@ -20,7 +20,7 @@ li.comment a,.vdetails li a{font-size:1em;}
 .vlink img{float:left;width:160px;height:90px;background:#666;border-right:solid 1px #000;margin: 0 5px 0 0;}
 .vlink h3{text-align:left;}
 #v{text-align:center;}
-#v video{margin:0;padding:0;width:100%;min-height:inherit;}
+#v video{margin:0;padding:0;width:100%;border-bottom:solid 1px #000;}
 #v p{margin:0px;text-align:left;}
 #footer{text-align:center;margin:0;padding:0;background:#fe3;}
 #footer h4{width:100%;padding:20px 0;margin:0;}
