@@ -32,7 +32,7 @@ $.getJSON("[% APP.api %]/u.php", {id: id, version: [% APP.version %]},
 	$('#subheader h2').text(u.name);
 	if(u.videos.length>0){
 
-		$('#'+containerID).append('<div id="subheader"><h2>'+u.name+' videos</h2></div><ul id="clips">');
+	$('#'+containerID).append('<ul id="messages"></ul><div id="subheader"><h2>'+u.name+' videos</h2></div><ul id="clips">');
 		var length = u.videos.length,
 		element = null;
 		for (var i = 0; i < length; i++) {
@@ -40,6 +40,8 @@ $.getJSON("[% APP.api %]/u.php", {id: id, version: [% APP.version %]},
 			$('#'+containerID).append('<li class="vlink"><a href="video.html#'+element.id+'"><img src="http://juggling.tv/thumb/0_'+element.id+'.jpg" /><h3>'+element.title+'</h3><p>'+element.desc+'</p></a></li>');
 
 			}
+
+			[% INCLUDE ads.js %]
 
 		$('#'+containerID).append('</ul>');
 	}

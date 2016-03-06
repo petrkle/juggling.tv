@@ -22,7 +22,7 @@ $.getJSON("[% APP.api %]/v.php", {id: id, version: [% APP.version %]},
 
   function(v) {
 	if(v.mp4 === ""){
-		$('#'+containerID).append('<div class="nomp4">Sorry, this video is not available.<br />Try it direct on <a href="http://juggling.tv/'+id+'" target="_blank">juggling.tv/'+id+'</a></div>');
+		$('#'+containerID).append('<div class="nomp4">Sorry, this video is not available in this Juggling.tv Android App.<br />Try it direct on <a href="http://juggling.tv/'+id+'" target="_blank">juggling.tv/'+id+'</a></div>');
 	}else{
 	$('#'+containerID).append('<video id="video" src="'+v.mp4+'" poster="http://juggling.tv/thumb/l-0_'+id+'.jpg" controls="controls" autobuffer="false" onclick="this.load();this.play();"></video>');
 
@@ -30,8 +30,10 @@ $.getJSON("[% APP.api %]/v.php", {id: id, version: [% APP.version %]},
 	$('#'+containerID).append('<p>'+v.description+'</p>');
 	$('#'+containerID).append('<ul class="vdetails"><li>Author: <a href="user.html#'+v.user_id+'" class="userlink">'+v.user_name+'</a></li><li><strong>Duration</strong>: '+v.duration+'</li><li><strong>Date</strong>: '+v.date+'</li><li><strong>Views</strong>: '+v.views+'</li></ul>');
 
+	$('#'+containerID).append('<div id="sponsor"><a href="'+v.sponsor_link+'" target="_blank"><img src="'+v.sponsor_img+'"></a></div>');
+
 	if(v.comments_count>0){
-		$('#'+containerID).append('<h3>Comments</h3><ul class="comments">');
+		$('#'+containerID).append('<ul class="comments">');
 		var length = v.comments.length,
 		element = null;
 		for (var i = 0; i < length; i++) {
@@ -42,8 +44,6 @@ $.getJSON("[% APP.api %]/v.php", {id: id, version: [% APP.version %]},
 		$('#'+containerID).append('</ul>');
 	
 	}
-
-	$('#'+containerID).append('<div id="sponsor"><a href="'+v.sponsor_link+'" target="_blank"><img src="'+v.sponsor_img+'"></a></div>');
 	 
 	$('#subheader h2').text(v.title);
 	$('#loading').hide();

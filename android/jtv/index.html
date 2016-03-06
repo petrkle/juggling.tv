@@ -9,6 +9,9 @@
 [% END %]
 </ul>
 
+<ul id="messages">
+</ul>
+
 <form action="search.html" method="get" onsubmit="search();return false;"><input name="q" id="q" type="text" /><a href="javascript:search();" class="search-link">Search</a></form>
 
 <script type="text/javascript">
@@ -17,6 +20,9 @@
 		window.location.href = "search.html#"+q.value;
 	}
 
+	$(document).ready(function () {
+	[% INCLUDE ads.js %]
+	});
 </script>
 
 [% INCLUDE footer.html -%]

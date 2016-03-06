@@ -15,12 +15,7 @@ $(document).ready(function () {
 var containerID="clips";
 var id=window.location.hash.split('#')[1];
 
-$.getJSON("[% APP.api %]/m.php", {version: "[% APP.version %]"},
-  function(data) {
-  for (var i=0; i < data.length; i++){
-		$('#messages').append('<li class="mlink"><a href="'+data[i].link+'"><img src="[% APP.api %]/img/'+data[i].img+'" /></a></li>');
-  }
-});
+[% INCLUDE ads.js %]
 
 $.getJSON("[% APP.api %]/l.php", { cat: id, version: "[% APP.version %]"},
   function(data) {
