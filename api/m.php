@@ -27,7 +27,7 @@ array_push($sponsors, array(
 
 $oldversion = array(
 	'img' => 'old-version.png',
-	'link' => 'https://zonglovani.info'
+	'link' => 'https://play.google.com/store/apps/details?id=info.zonglovani.jtv'
 );
 
 $info = array();
