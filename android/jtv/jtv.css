@@ -19,6 +19,9 @@ li.comment a,.vdetails li a{font-size:1em;}
 .vlink p span{display:block;height:75px;position:absolute;bottom:0;right:0;background: transparent url('gradient.png') repeat-x 0 100%;z-index:10;width:100%;border-bottom:solid 1px #fff;}
 .vlink img{float:left;width:160px;height:90px;background:#666;border-right:solid 1px #000;margin: 0 5px 0 0;}
 .vlink h3{text-align:left;}
+.mlink{clear:both;list-style:none;overflow:hidden;display:block;height:112px;border-bottom:solid 1px #000;text-align:center;}
+.mlink a{text-decoration:none;}
+.mlink img{width:255px;height:112px;background:#666;border:0;margin: 0 5px 0 0;}
 #v{text-align:center;}
 #v video{margin:0;padding:0;width:100%;border-bottom:solid 1px #000;}
 #v p{margin:0px;text-align:left;}

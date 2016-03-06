@@ -18,7 +18,7 @@ $(document).ready(function () {
 var containerID="v";
 var id=window.location.hash.split('#')[1];
 
-	$.getJSON("[% APP.api %]/v/"+id,
+$.getJSON("[% APP.api %]/v.php", {id: id, version: [% APP.version %]},
 
   function(v) {
 	if(v.mp4 === ""){
@@ -43,7 +43,7 @@ var id=window.location.hash.split('#')[1];
 	
 	}
 
-	$('#'+containerID).append('<div id="sponsor"><h3>Sponsor</h3><a href="'+v.sponsor_link+'" target="_blank"><img src="'+v.sponsor_img+'"></a></div>');
+	$('#'+containerID).append('<div id="sponsor"><a href="'+v.sponsor_link+'" target="_blank"><img src="'+v.sponsor_img+'"></a></div>');
 	 
 	$('#subheader h2').text(v.title);
 	$('#loading').hide();

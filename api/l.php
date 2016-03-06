@@ -47,6 +47,14 @@ if(is_cached($url)){
 
 }
 
+if(isset($_GET['version'])){
+	$version = preg_replace('/[^0-9\.]+/', '', $_GET['version']);
+	if($version <= STOPVERSION){
+		$videos=json_encode(array());
+	}
+}
+
+
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 print $videos;

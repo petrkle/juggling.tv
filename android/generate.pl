@@ -16,7 +16,7 @@ my $manifest = $xml->XMLin("AndroidManifest.xml");
 my $OUT = "assets/www";
 
 my $APP = {
-	'api' => "http://api-jtv.rhcloud.com",
+	'api' => "https://jugglingtv-api.zonglovani.info",
 	'name' => "juggling.tv",
 	'groups' => [@{$groups->{family}}],
 	'version' => $manifest->{'android:versionName'}
@@ -41,4 +41,4 @@ copy("jtv/img/right.png","$OUT/right.png");
 copy("jtv/img/loading.gif","$OUT/loading.gif");
 copy("jtv/img/gradient.png","$OUT/gradient.png");
 copy("jtv/img/logo.png","$OUT/logo.png");
-copy("jtv/jquery-1.8.3.min.js","$OUT/jquery.js");
+copy("jtv/jquery-2.2.1.min.js","$OUT/jquery.js");

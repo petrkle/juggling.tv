@@ -13,7 +13,7 @@ $(document).ready(function () {
 var containerID="clips";
 var id=window.location.hash.split('#')[1];
 
-	$.getJSON("[% APP.api %]/s/v/"+id,
+$.getJSON("[% APP.api %]/s.php",{q: id, type: "v"},
 
   function(s) {
 	if(s.length>0){
