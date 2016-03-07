@@ -22,6 +22,8 @@ li.comment a,.vdetails li a{font-size:1em;}
 .mlink{clear:both;list-style:none;overflow:hidden;display:block;height:112px;border-bottom:solid 1px #000;text-align:center;}
 .mlink a{text-decoration:none;}
 .mlink img{width:255px;height:112px;background:#666;border:0;margin: 0 5px 0 0;}
+.warnlink{clear:both;list-style:none;overflow:hidden;display:block;border-bottom:solid 1px #000;text-align:center;background:#fb0;vertical-aling:middle;}
+.warnlink a{text-decoration:underline;padding:20px;display:block;font-weight:bold;}
 #v{text-align:center;}
 #v video{margin:0;padding:0;width:100%;border-bottom:solid 1px #000;}
 #v p{margin:0px;text-align:left;}
